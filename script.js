@@ -2,13 +2,31 @@ function generateQRCode() {
     var phoneNumber = document.getElementById("phone").value;
 
     if (phoneNumber) {
-        // Lưu thông tin số điện thoại vào localStorage
-        localStorage.setItem("customerPhone", phoneNumber);
+        // Giả sử mỗi lần nhập sẽ tích 1 điểm
+        var points = 1;
+        
+        // Gửi dữ liệu tới Google Sheets thông qua Google Apps Script
+        var url = 'https://script.google.com/macros/s/AKfycbz-xsGJd4lqjup67rsXvDcYVAD830Xiv_XwsPvyur_4qBrGSg9JE8hUyCrMkk0CQz3SKQ/exec'; // Đã thay URL này với URL của bạn
+        var params = {
+            phoneNumber: phoneNumber,
+            points: points
+        };
 
-        // Hiển thị thông báo nhập thành công
-        alert("Số điện thoại đã được nhập. Mã QR sẽ được tạo!");
+        // Gửi POST request tới Google Apps Script
+        fetch(url, {
+            method: 'POST',
+            body: new URLSearchParams(params)
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result); // Hiển thị kết quả từ Google Apps Script
+            alert("Số điện thoại đã được lưu và điểm tích lũy đã được cập nhật!");
+        })
+        .catch(error => {
+            console.error("Lỗi khi gửi dữ liệu:", error);
+        });
 
-        // Tạo mã QR cho số điện thoại
+        // Tạo mã QR
         var qrCodeContainer = document.getElementById("qr-code");
         qrCodeContainer.innerHTML = ""; // Xóa mã QR cũ nếu có
 
