@@ -6,7 +6,7 @@ function generateQRCode() {
         var points = 1;
         
         // Gửi dữ liệu tới Google Sheets thông qua Google Apps Script
-        var url = 'https://script.google.com/macros/s/AKfycbxS2KI-di93DhRmf8ceY3oq2LJhVbYWkP8GzWgMH_VcYYjoAgd2hACvxc_mawFEo2C23A/exec'; // Đã thay URL này với URL của bạn
+        var url = 'https://script.google.com/macros/s/AKfycbwShrIIlv29488F-N1IVPek3NyJEs4njwuwjgMEohoscdX3iBqWnwB2Ir5-Nkg4KX9qBw/exec'; // Đã thay URL này với URL của bạn
         var params = {
             phoneNumber: phoneNumber,
             points: points
